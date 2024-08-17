@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>Add Product</h3>
+<div id="form">
+    <form th:action="@{/cars/delete}" th:object="${car}" method="post" novalidate ="novalidate" enctype="multipart/form-data">
+        <input type="hidden" th:field="*{id}"/>
+        <br>
+        <div>
+            <label for="code">Code</label>
+            <input type="text" id="code" th:field="*{code}"/>
+        </div>
+        <div>
+            <label for="name">Name</label>
+            <input type="text" id="name" th:field="*{name}"/>
+        </div>
+        <div>
+            <label for="producer">Producer</label>
+            <input type="text" id="producer" th:field="*{producer}"/>
+        </div>
+        <div>
+            <label for="price">Price</label>
+            <input type="text" id="price" th:field="*{price}"/>
+        </div>
+        <div>
+            <label for="description">Description</label>
+            <input type="text" id="description" th:field="*{description}"/>
+        </div>
+        <div>
+            <label for="img">img</label>
+            <input type="file" id="img" th:field="*{img}"/>
+        </div>
+        <input type="submit" value="xoa">
+    </form>
+</div>
+
+</body>
+</html>
