@@ -14,7 +14,11 @@
     <input type="submit" value="Tim kiem">
 
 </form>
-
+<div class="notify">
+    <div th:if="${success}">
+        <span th:text="${success}"></span>
+    </div>
+</div>
 <table th:if="${!carList.isEmpty()}">
     <thead>
     <tr>
