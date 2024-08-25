@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+    <title>Manufacturer Car Count</title>
+</head>
+<body>
+<h1>Manufacturer Car Count</h1>
+<table id="carList">
+    <thead>
+    <tr>
+        <th>Manufacturer Name</th>
+        <th>Car Count</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item : ${count}">
+        <td th:text="${item.name}">Manufacturer Name</td>
+        <td th:text="${item.count}">Car Count</td>
+    </tr>
+    </tbody>
+</table>
+
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>

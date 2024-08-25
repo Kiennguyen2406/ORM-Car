@@ -3,29 +3,34 @@ package com.example.ormcar.model;
 import org.springframework.web.multipart.MultipartFile;
 
 public class CarForm {
-    private int id;
+    private Long id;
     private String code;
     private String name;
-    private String producer;
     private double price;
     private String description;
     private MultipartFile img;
+    private Manufacturer manufacturer; // Sử dụng ID của Manufacturer để giữ khóa ngoại
 
-    public CarForm(int id, String code, String name, String producer, double price, String description, MultipartFile img) {
+    public CarForm() {
+    }
+
+    public CarForm(Long id, String code, String name, double price, String description, MultipartFile img, Manufacturer manufacturer) {
         this.id = id;
         this.code = code;
         this.name = name;
-        this.producer = producer;
         this.price = price;
         this.description = description;
         this.img = img;
+        this.manufacturer = manufacturer;
     }
 
-    public int getId() {
+    // Getters and Setters
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -43,14 +48,6 @@ public class CarForm {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getProducer() {
-        return producer;
-    }
-
-    public void setProducer(String producer) {
-        this.producer = producer;
     }
 
     public double getPrice() {
@@ -76,4 +73,14 @@ public class CarForm {
     public void setImg(MultipartFile img) {
         this.img = img;
     }
+
+    public Manufacturer getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(Manufacturer manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    // Phương thức để chuyển đổi từ CarForm sang Car
 }

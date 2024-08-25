@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
+<head th:replace="/layout :: head">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
@@ -9,17 +9,17 @@
 
 <p><a th:href="@{/cars/create}">Add</a></p>
 
+<h1>Car Search Results</h1>
 <form th:action="@{/cars/search}" method="get">
-    <input type="text" name = "name">
-    <input type="submit" value="Tim kiem">
-
+    <input type="text" name="name" placeholder="Search by name" />
+    <button type="submit">Search</button>
 </form>
 <div class="notify">
     <div th:if="${success}">
         <span th:text="${success}"></span>
     </div>
 </div>
-<table th:if="${!carList.isEmpty()}">
+<table th:if="${!carList.isEmpty()}" id = "carList" >
     <thead>
     <tr>
         <th>Code</th>
@@ -28,13 +28,15 @@
         <th>Price</th>
         <th>Description</th>
         <th>Image</th>
+        <th>Action</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="row,rowStat : ${carList}">
         <td th:text="${row.getCode()}"></td>
         <td th:text="${row.getName()}"></td>
-        <td th:text="${row.getProducer()}"></td>
+        <td th:if="${row.getManufacturer() != null}" th:text="${row.getManufacturer().getName()}"></td>
+        <td th:if="${row.getManufacturer() == null}">Không có kết quả</td>
         <td th:text="${row.getPrice()}"></td>
         <td th:text="${row.getDescription()}"></td>
         <td ><img width="100" height="100" th:src="@{'/i/'+${row.getImg()}}" src="" alt=""></td>
@@ -44,6 +46,15 @@
 
     </tbody>
 </table>
+<div>
+    <a th:if="${carList.hasPrevious()}"
+       th:href="@{/cars(page=${carList.number - 1})}">Previous</a>
+    <span th:text="${carList.number + 1}"></span> / <span th:text="${carList.totalPages}"></span>
+    <a th:if="${carList.hasNext()}"
+       th:href="@{/cars(page=${carList.number + 1})}">Next</a>
+</div>
 <p th:if="${carList.isEmpty()}">Khong co danh sach car</p>
+
+<footer th:replace="/layout :: footer"></footer>
 </body>
 </html>

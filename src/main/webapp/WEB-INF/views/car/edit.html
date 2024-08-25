@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="/layout :: head">
+    <title>Create Car</title>
+</head>
+<body>
+
+<h3>Edit Car</h3>
+
+<div id="form">
+    <form th:action="@{/cars/update}" th:object="${car}" method="post" novalidate="novalidate" enctype="multipart/form-data">
+        <input type="hidden" th:field="*{id}" />
+
+        <div>
+            <label for="code">Code</label>
+            <input type="text" id="code" th:field="*{code}" placeholder="Enter car code" />
+        </div>
+
+        <div>
+            <label for="name">Name</label>
+            <input type="text" id="name" th:field="*{name}" placeholder="Enter car name" />
+        </div>
+
+        <div>
+            <label for="producer">Producer</label>
+            <!--           <input type="text" id="producer" th:field="*{manufacturer}" placeholder="Enter producer name" />-->
+            <select id="producer" th:field="*{manufacturer}">
+                <option th:each="m : ${manufacturers}" th:value="${m.id}" th:text="${m.name}"></option>
+            </select>
+        </div>
+
+        <div>
+            <label for="price">Price</label>
+            <input type="text" id="price" th:field="*{price}" placeholder="Enter price" />
+        </div>
+
+        <div>
+            <label for="description">Description</label>
+            <input type="text" id="description" th:field="*{description}" placeholder="Enter car description" />
+        </div>
+
+        <div>
+            <label for="img">Image</label>
+            <input type="file" id="img" th:field="*{img}" />
+        </div>
+
+        <input type="submit" value="sua" />
+    </form>
+</div>
+
+<footer th:replace="/layout :: footer"></footer>
+
+</body>
+</html>

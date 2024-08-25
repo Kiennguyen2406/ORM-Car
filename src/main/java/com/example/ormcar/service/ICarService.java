@@ -1,18 +1,14 @@
 package com.example.ormcar.service;
 
 import com.example.ormcar.model.Car;
-import org.springframework.stereotype.Service;
+import com.example.ormcar.model.Manufacturer;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
-import java.util.List;
 
+public interface ICarService extends IGenerateService<Car>{
+    Iterable<Car> findAllByManufacturer(Manufacturer manufacturer);
+    Page<Car> findAll(Pageable pageable);
 
-public interface ICarService {
-    List<Car> findAll();
-
-    void save(Car car);
-
-    Car findById(int id);
-
-    void remote(int id);
-     List<Car> SearchByName(String name);
+    Page<Car> findAllByNameContaining(Pageable pageable, String name);
 }
